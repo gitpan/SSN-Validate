@@ -1,6 +1,14 @@
 Revision history for Perl extension SSN::Validate.
 
-0.03 Tue Aug 26
+0.04 Tue Aug 27 12:39:18 2003
+  - Minor POD fixes
+  - Changed test suite to use Test::More
+  - Added some tests
+	- Added 'valid' to data structure and have valid_area using it.
+	  An area could have data, but be invalid because the SSA isn't
+		issuing it, although assigned.
+
+0.03 Tue Aug 26 01:14:23 2003
 	- Patch Applied from Benjamin R. Ginter with many things, most
 		notable.
 		- Adding High Groups

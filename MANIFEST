@@ -1,6 +1,14 @@
 Changes
 Makefile.PL
 MANIFEST
+MANIFEST.SKIP
 README
-test.pl
 Validate.pm
+t/001_load.t
+t/002_valid.t
+t/003_tax_range.t
+t/004_invalid.t
+t/005_ad.t
+t/006_bad_combo.t
+t/007_valid_area.t
+t/008_invalid_area.t

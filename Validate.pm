@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 # Preloaded methods go here.
 
@@ -145,7 +145,7 @@ sub valid_ssn {
 sub valid_area {
     my ( $self, $area ) = @_;
 
-    return exists $self->{'SSN'}->{$area} ? 1 : 0;
+    return exists $self->{'SSN'}->{$area}->{valid} ? 1 : 0;
 }
 
 sub valid_group {
@@ -183,7 +183,8 @@ sub get_state {
     my $area = substr( $ssn, 0, 3 );
 
     if ( $self->valid_area($area) ) {
-        return $self->{'SSN'}->{$area}->{'state'};
+        return defined $self->{'SSN'}->{$area}->{'state'} 
+        	     ? $self->{'SSN'}->{$area}->{'state'} : '';
     }
     else {
         return '';
@@ -279,6 +280,7 @@ sub _init {
                     $by_ssn{$number} = {
                         'state'       => $state_abbr,
                         'description' => $description,
+												'valid'			  => 1,
                     };
                 }
             }
@@ -286,6 +288,7 @@ sub _init {
                 $by_ssn{$min} = {
                     'state'       => $state_abbr,
                     'description' => $description,
+										'valid'			  => 1,
                 };
             }
         }
@@ -316,6 +319,8 @@ SSN::Validate - Perl extension do SSN Validation
 
   my $state = $ssn->get_state("123456789");	
   my $state = $ssn->get_state("123");	
+
+	print $ssn->valid_area('123') ? "Valid" : "Invalid";
 
 =head1 DESCRIPTION
 
@@ -392,7 +397,9 @@ it.. or will return an empty string.
 =head2 TODO
 
 * Change how the data is stored. I don't like how it is done now... but works.
+
 * Find out state(s) for areas which aren't known right now.
+
 * Incorporate SSA scraping to update module data (script from Benjamin
   R. Ginter)
 
@@ -402,7 +409,7 @@ None by default.
 
 =head1 AUTHOR
 
-Kevin Meltzer, E<lt>kmeltz@cpan.org<gt>
+Kevin Meltzer, E<lt>kmeltz@cpan.orgE<gt>
 
 =head1 SEE ALSO
 
@@ -489,7 +496,7 @@ __DATA__
 650-653 ?? New area allocated, but not yet issued
 654-658	?? Unknown
 659-665 ?? New area allocated, but not yet issued
-666     ?? Unknown
+#666     ?? Unknown
 667-675	?? Unknown
 676-679 ?? New area allocated, but not yet issued
 680	?? Unknown
