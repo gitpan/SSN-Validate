@@ -1,8 +1,3 @@
-^blib
-^bak
-~$
-(?:^|/)[Mm]akefile(?:\.old)?$
-(?:^|/)pm_to_blib$
-^SSN-Validate-\d+\.\d+\.(zip|tar\.gz|tgz)$
-[Cc][Vv][Ss]/
-^\.releaserc
+^Makefile$
+^blib/
+^pm_to_blib$

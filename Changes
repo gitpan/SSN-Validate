@@ -1,5 +1,8 @@
 Revision history for Perl extension SSN::Validate.
 
+0.06 Mon Aug 23 8:16:32 2004
+	- Fix for bug reported in RT#6643
+
 0.05 Tue Sept 2 10:33:11 2003
 	- POD updates
 	- Added t/009_groups.t

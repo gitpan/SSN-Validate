@@ -3,7 +3,9 @@ Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 README
+SIGNATURE
 Validate.pm
+t/0-signature.t
 t/001_load.t
 t/002_valid.t
 t/003_tax_range.t

@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 # Preloaded methods go here.
 
@@ -503,7 +503,8 @@ __DATA__
 518-519 ID  Idaho
 520 WY  Wyoming
 521-524 CO  Colorado
-525,585 NM  New Mexico
+525 NM  New Mexico
+585 NM  New Mexico
 526-527 AZ  Arizona
 528-529 UT  Utah
 530 NV  Nevada
