@@ -12,3 +12,4 @@ t/005_ad.t
 t/006_bad_combo.t
 t/007_valid_area.t
 t/008_invalid_area.t
+t/009_groups.t

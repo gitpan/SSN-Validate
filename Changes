@@ -1,5 +1,15 @@
 Revision history for Perl extension SSN::Validate.
 
+0.05 Tue Sept 2 10:33:11 2003
+	- POD updates
+	- Added t/009_groups.t
+	- Updated valid_group() to take both 2 digit arg or > 2 digits.
+		Allowed for only 9 digits or 2 before. Also made it look at the
+		BAD_COMBO list.
+	- Updated TODO
+	- Added links to SSN info in SEE ALSO
+	- All tests still pass!
+
 0.04 Tue Aug 27 12:39:18 2003
   - Minor POD fixes
   - Changed test suite to use Test::More

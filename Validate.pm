@@ -4,7 +4,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 # Preloaded methods go here.
 
@@ -145,16 +145,26 @@ sub valid_ssn {
 sub valid_area {
     my ( $self, $area ) = @_;
 
+		$area = substr( $area, 0, 3) if length $area > 3;
+
     return exists $self->{'SSN'}->{$area}->{valid} ? 1 : 0;
 }
 
 sub valid_group {
     my ( $self, $group ) = @_;
 
-    if ( length $group == 9 ) {
+		$group =~ s!\D!!g;
+
+    #if ( length $group == 9 ) {
+    if ( length $group > 2 ) {
         my $area = substr( $group, 0, 3 );
         $group = substr( $group, 3, 2 );
         return 0 if $group eq '00';
+
+				if (in_array($area . $group, $self->{'BAD_COMBO'})) {
+					$self->{'ERROR'} = 'Invalid area/group combo';
+					return 0;
+				}
 
         if ( defined $self->{'SSN'}{$area}{'highgroup'} ) {
             return in_array( $group,
@@ -321,6 +331,7 @@ SSN::Validate - Perl extension do SSN Validation
   my $state = $ssn->get_state("123");	
 
 	print $ssn->valid_area('123') ? "Valid" : "Invalid";
+	print $ssn->valid_area('123-56-7890') ? "Valid" : "Invalid";
 
 =head1 DESCRIPTION
 
@@ -350,7 +361,8 @@ AAAA-GG-SSSS
 The SSN can be of any format (111-11-1111, 111111111, etc...). All non-digits
 are stripped.
 
-This method will return true if it is valid, and false if it isn't.
+This method will return true if it is valid, and false if it isn't. It
+uses the below methods to check the validity of each section.
 
 =item valid_area($ssn);
 
@@ -359,19 +371,14 @@ can pass this method a full SSN, or just the 3 digit area.
 
 =item valid_group($group);
 
-This is currently only making sure the group isn't "00". It will later check
-the High Groups in use by the SSA for areas.
+Will make sure that the group isn't "00", as well as check the
+AREA/GROUP combo for known invalid ones, and the SSA High Groups.
 
-Right now, this method expects an actual 2 digit group. Later versions will
-take a full SSN since groups tie together with areas, and the area will be
-needed to validate the group more than just checking for "00".
+If given a 2 digit GROUP, it will only make sure that that GROUP isn't
+"00".
 
-So, this method is only semi-useful right now to you. High Groups are shown
-here:
-
-http://www.ssa.gov/foia/highgroup.htm
-
-Patches welcome!
+If given a number in length above 2 digits, it will attempt to split
+into an AREA and GROUP and do further validation.
 
 =item valid_serial($serial);
 
@@ -403,17 +410,45 @@ it.. or will return an empty string.
 * Incorporate SSA scraping to update module data (script from Benjamin
   R. Ginter)
 
+* Consider SSN::Validate::SSDI for Social Security Death Index (SSDI)
+
+* Add 'invalid' param to new() to allow showing assigned, but not
+issued, AREAs as valid. The SSA considers them invalid, but someone may
+want to have the included.
+
+
 =head2 EXPORT
 
 None by default.
+
+=head1 BUGS
+
+Please let me know if something doesn't work as expected.
+
+You can report bugs via the CPAN RT:
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=SSN-Validate>
+
+If you are feeling nice, and would like quicker fixes, please provide a
+diff against F<Validate.pm> and the appropriate test file(s). If you
+are making something invalid which is currently valid, or vice versa,
+please provide a reference to why the change is needed. Thanks!
+
+Patches Welcome!
 
 =head1 AUTHOR
 
 Kevin Meltzer, E<lt>kmeltz@cpan.orgE<gt>
 
+=head1 LICENSE
+
+SSN::Validate is free software which you can redistribute and/or
+modify it under the same terms as Perl itself.
+
 =head1 SEE ALSO
 
-L<perl>.
+L<http://www.ssa.gov/foia/stateweb.html>,
+L<http://www.irs.gov/pub/irs-utl/1346atta.pdf>,
+L<http://www.ssa.gov/foia/highgroup.htm>.
 
 =cut
 
