@@ -9,7 +9,7 @@ my %ssns = (
     '000-56-3749' => [ 0, '' ],
     '444-00-3749' => [ 0, 'OK' ],
     '748010000'   => [ 0, '' ],
-    '764-40-3145' => [ 0, '??' ],
+    '764-49-3145' => [ 0, '??' ],
     '710-22-7722' => [ 0, 'RB' ],
     '900-44-1234' => [ 0, '??' ], # Tax range
     '550-19-1234' => [ 0, 'CA' ], # Bad Combo
@@ -40,7 +40,8 @@ my %ssns = (
     '044-11-0000'   => [ 0, 'CT'],
 );
 
-for my $num ( sort { $a cmp $b } keys %ssns ) {
+for my $num ( keys %ssns ) {
+#for my $num ( sort { $a cmp $b } keys %ssns ) {
     ok( $ssn->valid_ssn($num) == $ssns{$num}->[0], "valid_ssn($num)" );
     ok( $ssn->get_state($num) eq $ssns{$num}->[1], "get_state($num)" );
 }

@@ -1,5 +1,13 @@
 Revision history for Perl extension SSN::Validate.
 
+0.07 Tue Feb 1 12:25:24 2005
+	- Updated high groups from SSA site
+  - Added 'ignore_bad_combo' for new() to ignore hardwired bad AAAA-GG
+		combos.
+  - Added new tests for above
+	- Changed a few tests to reflect new valid high groups.
+	- Updated POD accordingly
+
 0.06 Mon Aug 23 8:16:32 2004
 	- Fix for bug reported in RT#6643
 
