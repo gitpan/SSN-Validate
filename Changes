@@ -1,0 +1,6 @@
+Revision history for Perl extension SSN::Validate.
+
+0.01  Sun Aug 17 17:36:13 2003
+	- original version; created by h2xs 1.21 with options
+		-X -n SSN::Validate
+
