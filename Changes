@@ -1,5 +1,21 @@
 Revision history for Perl extension SSN::Validate.
 
+0.03 Tue Aug 26
+	- Patch Applied from Benjamin R. Ginter with many things, most
+		notable.
+		- Adding High Groups
+		- ATIN/ITIN group ranges
+		- ATIN/ITIN Areas	
+		- Tests to go with his patch!
+	- Other changes made...
+		- Invalidation of Advertising SSNs
+		- Invalidation of certain invalid area/group combos
+		- Minor bugfixes
+		- Lots of tests added
+
+0.02  Sun Aug 17
+	- Minor doc changes and removing some comments.
+
 0.01  Sun Aug 17 17:36:13 2003
 	- original version; created by h2xs 1.21 with options
 		-X -n SSN::Validate
