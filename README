@@ -1,16 +1,5 @@
-SSN/Validate version 0.06
+SSN/Validate 
 =========================
-
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
-
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
 
 INSTALLATION
 
@@ -21,15 +10,12 @@ To install this module type the following:
    make test
    make install
 
-DEPENDENCIES
+The documentation is in the module file.  Once you install
+the file, you can read it with perldoc.
 
-This module requires these other modules and libraries:
+	perldoc SSN::Validate
+	
+If you want to read it before you install it, you can use
+perldoc directly on the module file.
 
-  blah blah blah
-
-COPYRIGHT AND LICENCE
-
-Put the correct copyright and licence information here.
-
-Copyright (C) 2004 Kevin Meltzer
-
+	perldoc lib/SSN/Validate.pm
