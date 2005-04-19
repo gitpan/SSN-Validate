@@ -1,5 +1,8 @@
 Revision history for Perl extension SSN::Validate.
 
+0.10 Mon Apr 18 08:39:02
+	- Updated high groups from SSA site
+
 0.08 Sun Feb 6 10:04:53
 	- Updated high groups from SSA site
   - Updated README to be generic install info instead of h2xs defaults
