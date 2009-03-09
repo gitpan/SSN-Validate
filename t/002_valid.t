@@ -1,4 +1,4 @@
-use Test::More tests => 43;
+use Test::More tests => 45;
 
 require_ok('SSN::Validate');
 
@@ -26,6 +26,7 @@ my %ssns = (
     '528-11-2228' => [ 1, 'UT' ],
     '585-18-1234' => [ 1, 'NM' ],
     '537-55-1234' => [ 1, 'WA' ],
+    '681-18-1234' => [ 1, '??' ],
 );
 
 for my $num ( sort { $a cmp $b } keys %ssns ) {
